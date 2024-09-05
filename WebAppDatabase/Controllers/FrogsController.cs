@@ -18,9 +18,15 @@ namespace WebAppDatabase.Controllers
 
         [HttpGet]
 
-        public IActionResult GetFrogs()
+        public IActionResult GetFrogs(string firstname)
         {
-            var students = _context.Students.Where(x => x.FirstName == "Tonda").ToList();
+            IQueryable<Student> query = _context.Students;
+            if(!string.IsNullOrWhiteSpace(firstname))
+            {
+                query = query.Where(x => x.FirstName == firstname);
+            }
+            var students = query.ToList();
+            /*var students = _context.Students.Where(x => x.FirstName == "Tonda").ToList();*/
             return Ok(students);
         }
 
