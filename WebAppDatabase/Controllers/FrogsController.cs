@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using WebAppDatabase.NewFolder;
+using WebAppDatabase.NewFolder1;
 
 namespace WebAppDatabase.Controllers
 {
@@ -33,6 +34,14 @@ namespace WebAppDatabase.Controllers
                 return NotFound();
             }
             return Ok(student);
+        }
+        [HttpPost]
+        public IActionResult CreateFrog([FromBody] Student student) 
+        {
+            if (student.FirstName == "Květoslav") return BadRequest("bad news");
+            _context.Students.Add(student);
+            _context.SaveChanges();
+            return CreatedAtAction(nameof(GetFrog), new { id = student.StudentId }, student);
         }
     }
 }
