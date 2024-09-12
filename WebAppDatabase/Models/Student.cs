@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using WebAppDatabase.Models;
 
 namespace WebAppDatabase.NewFolder1
 {
@@ -15,6 +16,8 @@ namespace WebAppDatabase.NewFolder1
         public string LastName { get; set; } = string.Empty;
         public string? MiddleName { get; set; }
         public int? ShoeSize { get; set; }
+        public required int ClasroomId { get; set; }
+        public Classroom? Classroom { get; set; }
         
     }
 }
